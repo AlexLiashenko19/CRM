@@ -1,22 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import Button from './button';
-import CompanyFormModal from './company-form-modal';
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import Button from '@/app/components/button';
 
-export interface AddCompanyButtonProps {}
-
-export default function AddCompanyButton({}) {
-  const [show, setShow] = useState(false);
+export default function AddCompanyButton() {
+  const router = useRouter();
   return (
-    <>
-      <Button onClick={() => setShow(true)}>Add Company</Button>
-      <CompanyFormModal
-        onSubmit={console.log}
-        show={show}
-        onClose={() => setShow(false)}
-      />
-    </>
+    <Button onClick={() => router.push('/companies/new', { scroll: false })}>
+      Add company
+    </Button>
   );
 }
